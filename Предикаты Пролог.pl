@@ -71,6 +71,17 @@ b_s(X,Y):-parent(Z,X),parent(Z,Y),man(Z),X\=Y.
 %b_s(+X) Выводит всех братьев и сестёр X
 b_s(X):-b_s(X,Y),print(Y),nl,fail.
 
+%son(+X,+Y) проверяет является ли X сыном Y.
+son(X,Y):-man(X),parent(X,Y).
+
+%son(+X) выводит сына X.
+son(X):-son(Y,X),print(Y),nl,fail.
+
+%husband(+X,+Y) Проверяет является ли X мужем Y.
+husband(X,Y):-man(X),parent(X,Z),parent(Y,Z).
+
+%husband(+X) выводит мужа X.
+husband(X):-husband(Y,X),print(Y),nl,!.
 
 max(X,Y,Z):-(
      X>=Y -> Z is X;
