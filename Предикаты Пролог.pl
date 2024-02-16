@@ -83,6 +83,21 @@ husband(X,Y):-man(X),parent(X,Z),parent(Y,Z).
 %husband(+X) выводит мужа X.
 husband(X):-husband(Y,X),print(Y),nl,!.
 
+%grand_so(+X,+Y):-Является ли X внуком Y.
+grand_so(X,Y):-man(X),parent(Z,X),parent(Y,Z).
+
+%grand_so(+X):- Выводит всех внуков X.
+grand_sons(X):-grand_so(Y,X),print(Y),nl,fail.
+
+%grand_ma_and_da(+X,+Y):- Проверяет являются ли X и Y бабушкой и внучкой или внучкой и бабушкой. 
+grand_ma_and_da(X,Y):-woman(X),woman(Y),parent(Z,X),parent(Y,Z);woman(X),woman(Y),parent(Z,Y),parent(X,Z).
+
+%niece(+X,+Y):- Проверяет является ли X племянницей Y.
+niece(X,Y):-woman(X),parent(Z,X),b_s(Z,Y).
+
+%niece(+X):- Выводит всех племянниц X.
+niece(X):-niece(Y,X),print(Y),nl,fail.
+
 max(X,Y,Z):-(
      X>=Y -> Z is X;
      Y>X -> Z is Y
