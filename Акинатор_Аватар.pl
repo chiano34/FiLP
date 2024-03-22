@@ -8,9 +8,11 @@ main :-
     nl,
     write('The character not found.'), nl.
 
- 
 characteristic(last_air_bender) :-
     query('Is your character from the last airbender?').
+
+characteristic(male) :-
+    query('Is your character a male?').
 
 characteristic(waterbender) :-
     query('Is your character a waterbender?').
@@ -21,12 +23,14 @@ characteristic(earthbender) :-
 characteristic(firebender) :-
     query('Is your character a firebender?').
 
-characteristic(male) :-
-    query('Is your character a male?').
-
 characteristic(has_brother) :-
     query('Is your character has a brother?').
- 
+
+characteristic(is_evil) :-
+    query('Is your character evil?').
+
+characteristic(has_sister) :-
+    query('Is your character has a sister?').
 
 character(aang):-
     characteristic(last_air_bender),
@@ -60,6 +64,13 @@ character(iroh):-
     characteristic(firebender),
     characteristic(has_brother),
     characteristic(male).
+
+character(Ozai):-
+    characteristic(last_air_bender),
+    characteristic(firebender),
+    characteristic(has_brother),
+    characteristic(male),
+    characteristic(is_evil).
 
 character(zuko):-
     characteristic(last_air_bender),
@@ -118,6 +129,10 @@ character(bolin):-
 
 character(kuvira):-
     characteristic(earthbender).
+
+character(lin):-
+    characteristic(earthbender),
+    characteristic(has_sister).
 
 character(bumi):-
     characteristic(has_brother),
