@@ -8,6 +8,7 @@ main :-
     nl,
     write('The character not found.'), nl.
 
+ 
 characteristic(last_air_bender) :-
     query('Is your character from the last airbender?').
 
@@ -26,24 +27,29 @@ characteristic(male) :-
 characteristic(has_brother) :-
     query('Is your character has a brother?').
  
+
 character(aang):-
     characteristic(last_air_bender),
     characteristic(waterbender),
     characteristic(earthbender),
-    characteristic(firebender),
-    characteristic(male).
+#порождаем список L всех положительных ответов на уже заданные вопросы
+    bagof(X,asked(X,y),L),
+#Находим длину списка и сравниваем её с необходимым числом для однозначного определения персонажа
+    length(L,A),
+    A=3,!.
 
 character(katara):-
     characteristic(last_air_bender),
     characteristic(waterbender),
-    characteristic(earthbender),
-    characteristic(firebender),
     characteristic(has_brother).
 
 character(master_paku):-
     characteristic(last_air_bender),
     characteristic(waterbender),
-    characteristic(male).
+    characteristic(male),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 character(hama):-
     characteristic(last_air_bender),
@@ -79,7 +85,9 @@ character(sokka):-
 character(korra):-
     characteristic(waterbender),
     characteristic(earthbender),
-    characteristic(firebender).
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=2,!.
 
 character(kaya):-
     characteristic(waterbender),
